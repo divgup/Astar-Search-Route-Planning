@@ -43,9 +43,13 @@ RouteModel::Node *RouteModel::Node::FindNeighbor(std::vector<int> node_indices) 
 
 
 void RouteModel::Node::FindNeighbors() {
+    // std::cout << "enter FindNeighbors" << std::endl;
     for (auto & road : parent_model->node_to_road[this->index]) {
         RouteModel::Node *new_neighbor = this->FindNeighbor(parent_model->Ways()[road->way].nodes);
+        // std::cout << "enter FindNeighbors" << std::endl;
+        // std::cout << new_neighbor->g_value << std::endl;
         if (new_neighbor) {
+            // std::cout << new_neighbor->g_value << std::endl;
             this->neighbors.emplace_back(new_neighbor);
         }
     }
@@ -56,7 +60,7 @@ RouteModel::Node &RouteModel::FindClosestNode(float x, float y) {
     Node input;
     input.x = x;
     input.y = y;
-
+    // std::cout << "x = " << x << std::endl;
     float min_dist = std::numeric_limits<float>::max();
     float dist;
     int closest_idx;

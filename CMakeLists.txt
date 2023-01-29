@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.11.3)
 set(CMAKE_CXX_STANDARD 17)
 
 # Add the path of the cmake files to the CMAKE_MODULE_PATH
+set(io2d_DIR "/home/divanshu-g/Documents/Udacity/CppND-Route-Planning-Project/P0267_RefImpl/build/P0267_RefImpl/P0267_RefImpl/CMakeFiles/Export/lib/cmake/io2d/")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 project(OSM_A_star_search)
@@ -26,7 +27,11 @@ add_subdirectory(thirdparty/googletest)
 
 # Add project executable
 add_executable(OSM_A_star_search src/main.cpp src/model.cpp src/render.cpp src/route_model.cpp src/route_planner.cpp)
-
+target_include_directories(OSM_A_star_search PUBLIC
+                          ${CMAKE_SOURCE_DIR}/P0267_RefImpl/P0267_RefImpl/P0267_RefImpl/cairo/xlib/
+                          ${CMAKE_SOURCE_DIR}/P0267_RefImpl/P0267_RefImpl/P0267_RefImpl/
+                          ${CMAKE_SOURCE_DIR}/P0267_RefImpl/P0267_RefImpl/P0267_RefImpl/cairo/
+)
 target_link_libraries(OSM_A_star_search
     PRIVATE io2d::io2d
     PUBLIC pugixml
